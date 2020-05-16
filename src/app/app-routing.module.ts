@@ -5,9 +5,19 @@ import { LoginComponent } from  './admin/login/login.component';
 import { RegisterComponent } from  './admin/register/register.component';
 import { ForgotPasswordComponent } from  './admin/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from  './admin/verify-email/verify-email.component';
+import { AppComponent } from './app.component';
 
-const routes: Routes = [
-];
+const routes: Routes = [{
+  path: 'admin',
+  component: AppComponent,
+
+  children: [
+    {path: 'login', component:LoginComponent},
+    {path: 'register', component:RegisterComponent},
+    {path: 'forgot-password', component:ForgotPasswordComponent},
+    {path: 'verify-email', component:VerifyEmailComponent}
+  ]
+}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
