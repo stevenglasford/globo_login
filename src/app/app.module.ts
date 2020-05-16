@@ -7,10 +7,11 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 
-import { LoginComponent } from './admin/login/login.component';
-import { RegisterComponent } from './admin/register/register.component';
-import { ForgotPasswordComponent } from './admin/forgot-password/forgot-password.component';
-import { VerifyEmailComponent } from './admin/verify-email/verify-email.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import { VerifyEmailComponent } from './admin/verify-email/verify-email.componen
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(config),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule
   ],
   providers: [],
