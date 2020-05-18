@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from  '../auth.service';
 import { Router, Params } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ThrowStmt } from '@angular/compiler';
+// import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +10,7 @@ import { ThrowStmt } from '@angular/compiler';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  registerFrom: FormGroup;
+  registerForm: FormGroup;
   errorMessage: string = '';
   successMessage: string = '';
 
@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
   }
 
   createForm() {
-    this.registerFrom = this.fb.group({
+    this.registerForm = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
     });

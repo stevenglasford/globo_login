@@ -12,8 +12,9 @@ import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { environment } from 'src/environments/environment';
-import { UsersComponent } from './users/users.component';
+// import { UsersComponent } from './users/users.component';
 import { UserComponent } from './user/user.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -23,14 +24,18 @@ import { UserComponent } from './user/user.component';
     RegisterComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
-    UsersComponent,
-    UserComponent
+    // UsersComponent,
+    UserComponent,
+    // ReactiveFormsModule,
+    // FormsModule,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
