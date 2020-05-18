@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router } from  "@angular/router";
-import { auth } from  'firebase/app';
+import * as firebase from  'firebase/app';
 import { AngularFireAuth } from  "@angular/fire/auth";
 import { User } from  'firebase';
+import { resolve } from 'dns';
 
 @Injectable({
   providedIn: 'root'
@@ -20,13 +21,56 @@ export class AuthService {
     })
   }
 
+  doGoogleLogin(){
+    return new Promise<any>((resolve, reject) => {
+      let provider = new firebase.auth.GoogleAuthProvider();
+      provider.addScope('profile');
+      provider.addScope('email');
+      this.afAuth.signInWithPopup(provider)
+      .then(res => {
+        resolve(res);
+      })
+    })
+  }
+
+  doLogin(value){
+    return new Promise<any>((resolve,reject) => {
+      firebase.auth().signInWithEmailAndPassword(value.email, value.password)
+      .then(res => {
+        resolve(res);
+      }, err => reject(err))
+    })
+  }
+
+  doLogout(){
+    return new Promise((resolve, reject) => {
+      if (firebase.auth().currentUser){
+        this.afAuth.signOut();
+        resolve();
+      }
+      else{
+        reject();
+      }
+    })
+  }
+
+  doRegister(value){
+    return new Promise<any>((resolve, reject) => {
+      firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
+      .then(res => {
+        resolve(res);
+      }, err => reject(err))
+    })
+  }
+
   async login(email: string, password: string) {
     var result = await this.afAuth.signInWithEmailAndPassword(email,password);
     this.router.navigate(['admin/list']);
   }
 
   async register(email: string, password: string) {
-    var result = await this.afAuth.signInWithEmailAndPassword(email,password)//this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+    var result = await this.afAuth.createUserWithEmailAndPassword(email,password)
+    //this.afAuth.auth.createUserWithEmailAndPassword(email, password)
     // this.sendEmailVerification();
   }
 
@@ -50,8 +94,8 @@ export class AuthService {
     return  user  !==  null;
   }
 
-  async  loginWithGoogle(){
-    await  this.afAuth.signInWithPopup(new auth.GoogleAuthProvider())
-    this.router.navigate(['admin/list']);
-  }
+  // async  loginWithGoogle(){
+  //   await  this.afAuth.signInWithPopup(new auth.GoogleAuthProvider())
+  //   this.router.navigate(['admin/list']);
+  // }
 }
