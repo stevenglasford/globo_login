@@ -12,6 +12,8 @@ import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { environment } from 'src/environments/environment';
+import { UsersComponent } from './users/users.component';
+import { UserComponent } from './user/user.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { environment } from 'src/environments/environment';
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    UsersComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
