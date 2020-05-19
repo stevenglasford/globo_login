@@ -63,36 +63,40 @@ export class AuthService {
     })
   }
 
-  async login(email: string, password: string) {
-    var result = await this.afAuth.signInWithEmailAndPassword(email,password);
-    this.router.navigate(['admin/list']);
+  getUserFingerPrint(): string{
+    return '';
   }
 
-  async register(email: string, password: string) {
-    var result = await this.afAuth.createUserWithEmailAndPassword(email,password)
-    //this.afAuth.auth.createUserWithEmailAndPassword(email, password)
-    // this.sendEmailVerification();
-  }
-
-  // async sendEmailVerification() {
-  //   await this.afAuth.//await this.afAuth.//this.afAuth.auth.currentUser.sendEmailVerification()
-  //   this.router.navigate(['admin/verify-email']);
+  // async login(email: string, password: string) {
+  //   var result = await this.afAuth.signInWithEmailAndPassword(email,password);
+  //   this.router.navigate(['user']);
   // }
 
-  async sendPasswordResetEmail(passwordResetEmail: string) {
-    return await this.afAuth.sendPasswordResetEmail(passwordResetEmail);
-  }
+  // async register(email: string, password: string) {
+  //   var result = await this.afAuth.createUserWithEmailAndPassword(email,password)
+  //   //this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+  //   // this.sendEmailVerification();
+  // }
 
-  async logout(){
-    await this.afAuth.signOut()
-    localStorage.removeItem('user');
-    this.router.navigate(['admin/login']);
-  }
+  // // async sendEmailVerification() {
+  // //   await this.afAuth.//await this.afAuth.//this.afAuth.auth.currentUser.sendEmailVerification()
+  // //   this.router.navigate(['admin/verify-email']);
+  // // }
 
-  get isLoggedIn(): boolean {
-    const  user  =  JSON.parse(localStorage.getItem('user'));
-    return  user  !==  null;
-  }
+  // async sendPasswordResetEmail(passwordResetEmail: string) {
+  //   return await this.afAuth.sendPasswordResetEmail(passwordResetEmail);
+  // }
+
+  // async logout(){
+  //   await this.afAuth.signOut()
+  //   localStorage.removeItem('user');
+  //   this.router.navigate(['admin/login']);
+  // }
+
+  // get isLoggedIn(): boolean {
+  //   const  user  =  JSON.parse(localStorage.getItem('user'));
+  //   return  user  !==  null;
+  // }
 
   // async  loginWithGoogle(){
   //   await  this.afAuth.signInWithPopup(new auth.GoogleAuthProvider())

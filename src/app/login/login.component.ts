@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   tryGoogleLogin(){
     this.authService.doGoogleLogin()
     .then(res => {
-      this.router.navigate(['/user'])
+      this.router.navigate(['user'])
     })
   }
 

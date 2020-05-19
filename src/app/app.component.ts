@@ -8,13 +8,15 @@ import { AuthService } from  './auth.service';
 })
 export class AppComponent implements OnInit {
   title = 'Swipeshop Authentication Module';
+  userid: string = '';
   constructor(private  authService:  AuthService) { }
 
-  login(username: string, password: string): boolean {
-    return false;
+  setUser(name: string):void{
+    this.userid = name;
   }
 
   ngOnInit(): void {
+    this.userid = this.authService.user.uid;
   }
 
 }

@@ -3,8 +3,9 @@ import { AuthService } from '../auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FirebaseUserModel } from '../user.model';
+// import { FirebaseUserModel } from '../user.model';
 import { UserService } from '../user.service'
+import { Observable, observable } from 'rxjs';
 
 @Component({
   selector: 'app-user',
@@ -12,8 +13,9 @@ import { UserService } from '../user.service'
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  user: FirebaseUserModel = new FirebaseUserModel();
+  user: Observable<string>;
   profileForm: FormGroup;
+  uniqueUserId: string = '';
 
   constructor(
     public userService: UserService,
@@ -24,13 +26,7 @@ export class UserComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.data.subscribe(routeData => {
-      let data = routeData['data'];
-      if (data) {
-        this.user = data;
-        this.createForm(this.user.name);
-      }
-    })
+    this.uniqueUserId = this.authService.user.uid;
   }
 
   createForm(name){

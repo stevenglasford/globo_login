@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
   tryGoogleLogin(){
     this.authService.doGoogleLogin()
     .then(res => {
-      this.router.navigate(['/user']);
+      this.router.navigate(['user']);
     }, err => console.log(err))
   }
 
